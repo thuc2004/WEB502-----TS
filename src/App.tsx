@@ -3,10 +3,26 @@ import { Link, Route, Routes } from "react-router-dom";
 import ListPage from "./pages/List";
 import EditPage from "./pages/Edit";
 import AddPage from "./pages/Add";
+import Button from "./components/Button";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [count, setCount] = useState(1000000); // state: count = 0, setState : value => state = value
+
+  useEffect(() => {
+    console.log("App component da duoc render");
+    // fetch("https://jsonplaceholder.typicode.com/posts");
+    document.title = `Count is ${count}`;
+  }, []);
   return (
     <>
+      <h1>bien count co gia tri : {count}</h1>
+      <Button
+        label="tang count leen 1"
+        color="red"
+        onClick={() => setCount(count + 1)}
+      />
+      <Button label="Blue Button" onClick={() => alert("Blue clicked!")} />
       <nav className="bg-blue-600 text-white shadow">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="text-xl font-semibold">
@@ -14,13 +30,13 @@ function App() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="edit" className="hover:text-gray-200">
+            <Link to="/" className="hover:text-gray-200">
               Trang chủ
             </Link>
             <Link to="add" className="hover:text-gray-200">
               Danh sách
             </Link>
-            <Link to="#" className="hover:text-gray-200">
+            <Link to="/add" className="hover:text-gray-200">
               Thêm mới
             </Link>
           </div>
