@@ -1,6 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 import z from "zod";
 
 type FormValue = {
@@ -18,8 +21,14 @@ const validate = z.object({
     .nonempty("Tên giảng viên không được để trống"),
 });
 function AddPage() {
+  const { id } = useParams();
+  const nav = useNavigate();
+
+  // console.log("id", id);
+
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -27,12 +36,34 @@ function AddPage() {
   });
   console.log(errors);
 
+  useEffect(() => {
+    const getDetail = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3000/subject/${id}`);
+        reset(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (id) {
+      getDetail();
+    }
+  }, [id]);
   const onSubmit = async (values: FormValue) => {
     console.log(values);
     try {
-      await axios.post("http://localhost:3000/subject", values);
+      if (id) {
+        // edit
+        await axios.put(`http://localhost:3000/subject/${id}`, values);
+      } else {
+        // add
+        await axios.post("http://localhost:3000/subject", values);
+      }
+      toast.success("Thành công");
+      nav("/list");
     } catch (error) {
       console.log(error);
+      toast.error("Thất bại: " + (error as AxiosError).message);
     }
   };
 

@@ -8,11 +8,9 @@
       "teacher": "Nguyễn Văn A"
     },
     {
-      "id": 2,
       "name": "TypeScript",
       "credit": 2,
-      "category": "Chuyên ngành",
-      "teacher": "Trần Thị B"
+      "id": 2
     },
     {
       "id": 3,
@@ -22,19 +20,11 @@
       "teacher": "Lê Văn C"
     },
     {
-      "id": 4,
-      "name": "Lập trình C",
+      "name": "aaaaa1",
       "credit": 4,
-      "category": "Đại cương",
-      "teacher": "Phạm Văn D"
-    },
-    {
-      "name": "minh thức",
-      "id": 5
-    },
-    {
-      "name": "11111111",
-      "id": 6
+      "category": "Chuyên ngành",
+      "teacher": "aaaaaa",
+      "id": 4
     }
   ]
 }

@@ -58,7 +58,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<ListPage />} />
-        <Route path="/edit" element={<EditPage />} />
+        <Route path="/edit/:id" element={<EditPage />} />
         <Route path="/add" element={<AddPage />} />
       </Routes>
       <Toaster />

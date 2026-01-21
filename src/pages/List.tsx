@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import type { Subject } from "../types/Subject";
+
 type Subject = {
   id: number;
   name: string;
@@ -9,6 +9,7 @@ type Subject = {
   instructor: string;
   duration: string;
 };
+
 const List = () => {
   const [subjects, setSubjects] = useState<Subject[]>([]);
 
@@ -25,6 +26,21 @@ const List = () => {
     getAll();
   }, []);
 
+  const handleDelete = async (id: number) => {
+    const isConfirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
+    if (!isConfirm) return;
+
+    try {
+      await fetch(`http://localhost:3000/subject/${id}`, {
+        method: "DELETE",
+      });
+
+      setSubjects(subjects.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error("Xóa thất bại:", error);
+    }
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Danh sách</h1>
@@ -34,10 +50,12 @@ const List = () => {
           <tr className="bg-gray-100">
             <th className="border p-2">ID</th>
             <th className="border p-2">Tên</th>
-            <th className="border p-2">title</th>
+            <th className="border p-2">Credit</th>
+            <th className="border p-2">Category</th>
             <th className="border p-2">Hành động</th>
           </tr>
         </thead>
+
         <tbody>
           {subjects.map((item) => (
             <tr key={item.id}>
@@ -45,13 +63,20 @@ const List = () => {
               <td className="border p-2">{item.name}</td>
               <td className="border p-2">{item.credit}</td>
               <td className="border p-2">{item.category}</td>
-              <td className="border p-2">
+              <td className="border p-2 space-x-3">
                 <Link
                   to={`/edit/${item.id}`}
                   className="text-blue-600 hover:underline"
                 >
                   Sửa
                 </Link>
+
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="text-red-600 hover:underline"
+                >
+                  Xóa
+                </button>
               </td>
             </tr>
           ))}
