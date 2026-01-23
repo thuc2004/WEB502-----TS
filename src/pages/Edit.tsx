@@ -11,7 +11,7 @@ type FormValue = {
 };
 
 const validate = z.object({
-  name: z.string().min(3, "Name 3 ky tu").max(10),
+  name: z.string(),
   credit: z.number().min(1).max(100),
   category: z.string().nonempty("Vui lòng chọn danh mục"),
 

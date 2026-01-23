@@ -12,7 +12,7 @@ type FormValue = {
 
 const validate = z.object({
   name: z.string().min(3, "Name 3 ky tu").max(10),
-  credit: z.number().min(1).max(100),
+  // credit: z.number,
   category: z.string().nonempty("Vui lòng chọn danh mục"),
 
   teacher: z
@@ -87,7 +87,7 @@ function AddPage() {
         </div>
 
         {/* Select */}
-        <div>
+        {/* <div>
           <label className="block font-medium mb-1">credit</label>
           <input
             type="number"
@@ -97,7 +97,7 @@ function AddPage() {
           {errors.credit && (
             <p className="text-red-500 text-sm">{errors.credit.message}</p>
           )}
-        </div>
+        </div> */}
 
         <div>
           <label className="block font-medium mb-1">Danh mục</label>
