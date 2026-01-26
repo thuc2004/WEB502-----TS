@@ -5,6 +5,7 @@ import EditPage from "./pages/Edit";
 import AddPage from "./pages/Add";
 import Button from "./components/Button";
 import { useEffect, useState } from "react";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   const [count, setCount] = useState(1000000); // state: count = 0, setState : value => state = value
@@ -42,10 +43,10 @@ function App() {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="#" className="hover:text-gray-200">
+            <Link to="login" className="hover:text-gray-200">
               Đăng nhập
             </Link>
-            <Link to="#" className="hover:text-gray-200">
+            <Link to="/register" className="hover:text-gray-200">
               Đăng ký
             </Link>
           </div>
@@ -60,6 +61,8 @@ function App() {
         <Route path="/" element={<ListPage />} />
         <Route path="/edit/:id" element={<EditPage />} />
         <Route path="/add" element={<AddPage />} />
+        <Route path="/register" element={<AuthPage />} />
+        <Route path="/login" element={<AuthPage isLogin />} />
       </Routes>
       <Toaster />
     </>

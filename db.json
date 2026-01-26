@@ -53,5 +53,23 @@
       "teacher": "Nguyễn Văn A",
       "id": 8
     }
+  ],
+  "users": [
+    {
+      "email": "234@gmail.com",
+      "password": "$2a$10$GZXOBuNUO6GAZprSDUP5O.E/sLY1csHGxXeh7S6kSD9kiNih8VVkK",
+      "id": 1
+    },
+    {
+      "email": "123dddd@gmail.com",
+      "password": "$2a$10$LqOS.8.LzHKn2WXEOsD6seaiyj4KwetUHbP.8O.3FLAUQUEI.9KQK",
+      "id": 2
+    },
+    {
+      "email": "123@gmail.com",
+      "password": "$2a$10$ythtRHgWjbbXluwW8IDEZ.TQl1J1SXe9VXZx8c5JFpK5EJ/Ez40OK",
+      "username": "admin",
+      "id": 3
+    }
   ]
 }
